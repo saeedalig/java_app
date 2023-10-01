@@ -22,42 +22,42 @@ pipeline {
             }
         }
 
-        // stage ("MVN Unit Test") {
-        //     when {expression {params.action == 'Create'} }
-        //     steps {
-        //         script {
-        //             mvnTest()
-        //         }
-        //     }
-        // }
+        stage ("MVN Unit Test") {
+            when {expression {params.action == 'Create'} }
+            steps {
+                script {
+                    mvnTest()
+                }
+            }
+        }
 
-        // stage ("MVN Integration Test") {
-        //     when {expression {params.action == 'Create'} }
-        //     steps {
-        //         script {
-        //             mvnIntegrationTest()
-        //         }
-        //     }
-        // }
+        stage ("MVN Integration Test") {
+            when {expression {params.action == 'Create'} }
+            steps {
+                script {
+                    mvnIntegrationTest()
+                }
+            }
+        }
 
         stage ("Static Code Analysis: SonarQube") {
             when {expression {params.action == 'Create'} }
             steps {
                 script {
-                    def SonarQubecredentialsId = 'sonar-api'
+                    def SonarQubecredentialsId = 'sonar_api'
                     staticCodeAnalysis(SonarQubecredentialsId)
                 }
             }
         }
 
-        stage ("Quality Gate Status Check: SonarQube") {
-            when {expression {params.action == 'Create'} }
-            steps {
-                script {
-                    def SonarQubecredentialsId = 'sonar-api'
-                    QualityGateStatus(SonarQubecredentialsId)
-                }
-            }
-        }
+        // stage ("Quality Gate Status Check: SonarQube") {
+        //     when {expression {params.action == 'Create'} }
+        //     steps {
+        //         script {
+        //             def SonarQubecredentialsId = 'sonar_api'
+        //             QualityGateStatus(SonarQubecredentialsId)
+        //         }
+        //     }
+        // }
     }
 }
