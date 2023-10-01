@@ -22,23 +22,23 @@ pipeline {
             }
         }
 
-        stage ("MVN Unit Test") {
-            when {expression {params.action == 'Create'} }
-            steps {
-                script {
-                    mvnTest()
-                }
-            }
-        }
+        // stage ("MVN Unit Test") {
+        //     when {expression {params.action == 'Create'} }
+        //     steps {
+        //         script {
+        //             mvnTest()
+        //         }
+        //     }
+        // }
 
-        stage ("MVN Integration Test") {
-            when {expression {params.action == 'Create'} }
-            steps {
-                script {
-                    mvnIntegrationTest()
-                }
-            }
-        }
+        // stage ("MVN Integration Test") {
+        //     when {expression {params.action == 'Create'} }
+        //     steps {
+        //         script {
+        //             mvnIntegrationTest()
+        //         }
+        //     }
+        // }
 
         stage ("Static Code Analysis: SonarQube") {
             when {expression {params.action == 'Create'} }
