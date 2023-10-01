@@ -30,5 +30,14 @@ pipeline {
                 }
             }
         }
+
+        stage ("MVN Integration Test") {
+            when {expression {params.action == 'Create'} }
+            steps {
+                script {
+                    mvnIntegrationTest()
+                }
+            }
+        }
     }
 }
