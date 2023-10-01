@@ -2,20 +2,11 @@
 
 pipeline {
 
-    agent any 
-
-    #parameters {
-        #choice (name: 'action', choices: 'Create\nDelete', description: 'Choose Create/Destroy')
-        #string (name: 'ImageName', description: "name of the docker build", defaultValue: 'java_app')
-        #string (name: 'ImageTag', description: "tag of the docker build", defaultValue: 'v1')
-        #string (name: 'DockerHubUser', description: "name of the Application", defaultValue: 'asa96')
-    #}
-
+    agent any
     
     stages {
 
         stage ("Git Checkout") {  
-        when {expression {params.action == 'Create'} }          
             steps {
                 script {
                     gitCheckout(
