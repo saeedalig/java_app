@@ -50,14 +50,14 @@ pipeline {
             }
         }
 
-        // stage ("Quality Gate Status Check: SonarQube") {
-        //     when {expression {params.action == 'Create'} }
-        //     steps {
-        //         script {
-        //             def SonarQubecredentialsId = 'sonar_api'
-        //             QualityGateStatus(SonarQubecredentialsId)
-        //         }
-        //     }
-        // }
+        stage ("Quality Gate Status Check: SonarQube") {
+            when {expression {params.action == 'Create'} }
+            steps {
+                script {
+                    def SonarQubecredentialsId = 'sonar_api'
+                    QualityGateStatus(SonarQubecredentialsId)
+                }
+            }
+        }
     }
 }
