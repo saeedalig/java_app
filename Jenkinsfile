@@ -64,7 +64,7 @@ pipeline {
         // }
 
         stage ("Maven Build") {
-        when {expression {params.action == 'Create'} }
+            when {expression {params.action == 'Create'} }
             steps {
                 script {
                     mvnBuild()
@@ -73,7 +73,7 @@ pipeline {
         }
 
         stage('Docker Image Build'){
-         when { expression {  params.action == 'Create' } }
+             when { expression {  params.action == 'Create' } }
             steps{
                script{
                    
@@ -81,5 +81,25 @@ pipeline {
                }
             }
         }
+
+        stage('Docker Image Scan: trivy '){
+            when { expression {  params.action == 'Create' } }
+            steps{
+               script{
+                   
+                   dockerImageScan("${params.dockerHub}","${params.imageName}","${params.imageTag}")
+               }
+            }
+        }
+
+        // stage('Docker Image Cleanup: trivy '){
+        //     when { expression {  params.action == 'Create' } }
+        //     steps{
+        //        script{
+                   
+        //            dockerImageCleanup("${params.dockerHub}","${params.imageName}","${params.imageTag}")
+        //        }
+        //     }
+        // }
     }
 }
