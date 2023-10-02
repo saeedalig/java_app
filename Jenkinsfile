@@ -101,5 +101,15 @@ pipeline {
                }
             }
         }
+
+        stage('Docker Image Cleanup'){
+            when { expression {  params.action == 'Create' } }
+            steps{
+               script{
+                   
+                   dockerImagePush("${params.dockerHub}","${params.imageName}","${params.imageTag}")
+               }
+            }
+        }
     }
 }
