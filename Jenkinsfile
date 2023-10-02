@@ -6,8 +6,8 @@ pipeline {
 
     parameters {
         choice (name: 'action', choices: 'Create\nDelete', description: 'Choose Create/Destroy')
-        string (name: 'imageName', description: "name of the docker build", defaultValue: 'java_app')
-        string (name: 'imageTag',  description: "tag of the docker build", defaultValue: 'v1')
+        string (name: 'imageName', description: "name of the docker build", defaultValue: 'springboot')
+        string (name: 'imageTag',  description: "tag of the docker build", defaultValue: 'v1.$BUILD_ID')
         string (name: 'dockerHub', description: "name of the Docker user", defaultValue: 'asa96')
     }
     
