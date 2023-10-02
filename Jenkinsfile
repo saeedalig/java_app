@@ -92,12 +92,12 @@ pipeline {
         //     }
         // }
 
-        stage('Docker Image Cleanup: trivy '){
+        stage('Docker Image Push: Dockerhub'){
             when { expression {  params.action == 'Create' } }
             steps{
                script{
                    
-                   dockerImageCleanup("${params.dockerHub}","${params.imageName}","${params.imageTag}")
+                   dockerImagePush("${params.dockerHub}","${params.imageName}","${params.imageTag}")
                }
             }
         }
