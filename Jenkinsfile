@@ -92,14 +92,14 @@ pipeline {
             }
         }
 
-        // stage('Docker Image Cleanup: trivy '){
-        //     when { expression {  params.action == 'Create' } }
-        //     steps{
-        //        script{
+        stage('Docker Image Cleanup: trivy '){
+            when { expression {  params.action == 'Create' } }
+            steps{
+               script{
                    
-        //            dockerImageCleanup("${params.dockerHub}","${params.imageName}","${params.imageTag}")
-        //        }
-        //     }
-        // }
+                   dockerImageCleanup("${params.dockerHub}","${params.imageName}","${params.imageTag}")
+               }
+            }
+        }
     }
 }
