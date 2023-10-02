@@ -107,7 +107,7 @@ pipeline {
             steps{
                script{
                    
-                   dockerImagePush("${params.dockerHub}","${params.imageName}","${params.imageTag}")
+                   dockerImageCleanup("${params.dockerHub}","${params.imageName}","${params.imageTag}")
                }
             }
         }
