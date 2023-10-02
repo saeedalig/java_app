@@ -82,15 +82,15 @@ pipeline {
             }
         }
 
-        stage('Docker Image Scan: trivy '){
-            when { expression {  params.action == 'Create' } }
-            steps{
-               script{
+        // stage('Docker Image Scan: trivy '){
+        //     when { expression {  params.action == 'Create' } }
+        //     steps{
+        //        script{
                    
-                   dockerImageScan("${params.dockerHub}","${params.imageName}","${params.imageTag}")
-               }
-            }
-        }
+        //            dockerImageScan("${params.dockerHub}","${params.imageName}","${params.imageTag}")
+        //        }
+        //     }
+        // }
 
         stage('Docker Image Cleanup: trivy '){
             when { expression {  params.action == 'Create' } }
