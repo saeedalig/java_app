@@ -25,43 +25,43 @@ pipeline {
             }
         }
 
-        // stage ("MVN Unit Test") {
-        //     when {expression {params.action == 'Create'} }
-        //     steps {
-        //         script {
-        //             mvnTest()
-        //         }
-        //     }
-        // }
+        stage ("MVN Unit Test") {
+            when {expression {params.action == 'Create'} }
+            steps {
+                script {
+                    mvnTest()
+                }
+            }
+        }
 
-        // stage ("MVN Integration Test") {
-        //     when {expression {params.action == 'Create'} }
-        //     steps {
-        //         script {
-        //             mvnIntegrationTest()
-        //         }
-        //     }
-        // }
+        stage ("MVN Integration Test") {
+            when {expression {params.action == 'Create'} }
+            steps {
+                script {
+                    mvnIntegrationTest()
+                }
+            }
+        }
 
-        // stage ("Static Code Analysis: SonarQube") {
-        //     when {expression {params.action == 'Create'} }
-        //     steps {
-        //         script {
-        //             def SonarQubecredentialsId = 'sonar-api'
-        //             staticCodeAnalysis(SonarQubecredentialsId)
-        //         }
-        //     }
-        // }
+        stage ("Static Code Analysis: SonarQube") {
+            when {expression {params.action == 'Create'} }
+            steps {
+                script {
+                    def SonarQubecredentialsId = 'sonar-api'
+                    staticCodeAnalysis(SonarQubecredentialsId)
+                }
+            }
+        }
 
-        // stage ("Quality Gate Status Check: SonarQube") {
-        //     when {expression {params.action == 'Create'} }
-        //     steps {
-        //         script {
-        //             def SonarQubecredentialsId = 'sonar-api'
-        //             QualityGateStatus(SonarQubecredentialsId)
-        //         }
-        //     }
-        // }
+        stage ("Quality Gate Status Check: SonarQube") {
+            when {expression {params.action == 'Create'} }
+            steps {
+                script {
+                    def SonarQubecredentialsId = 'sonar-api'
+                    QualityGateStatus(SonarQubecredentialsId)
+                }
+            }
+        }
 
         stage ("Maven Build") {
             when {expression {params.action == 'Create'} }
@@ -82,15 +82,15 @@ pipeline {
             }
         }
 
-        // stage('Docker Image Scan: trivy '){
-        //     when { expression {  params.action == 'Create' } }
-        //     steps{
-        //        script{
+        stage('Docker Image Scan: trivy '){
+            when { expression {  params.action == 'Create' } }
+            steps{
+               script{
                    
-        //            dockerImageScan("${params.dockerHub}","${params.imageName}","${params.imageTag}")
-        //        }
-        //     }
-        // }
+                   dockerImageScan("${params.dockerHub}","${params.imageName}","${params.imageTag}")
+               }
+            }
+        }
 
         stage('Docker Image Push: Dockerhub'){
             when { expression {  params.action == 'Create' } }
